@@ -1,0 +1,143 @@
+{
+  "doctype": "Workspace",
+  "name": "Radiology Center",
+  "label": "Radiology Center",
+  "title": "Radiology Center",
+  "type": "Workspace",
+  "module": "Healthcare",
+  "app": "healthcare",
+  "public": 1,
+  "docstatus": 0,
+  "for_user": "",
+  "is_hidden": 0,
+  "hide_custom": 1,
+  "icon": "calendar-clock",
+  "indicator_color": "blue",
+  "roles": [
+    {
+      "role": "Healthcare Administrator"
+    },
+    {
+      "role": "System Manager"
+    }
+  ],
+  "charts": [],
+  "number_cards": [],
+  "quick_lists": [],
+  "custom_blocks": [],
+  "shortcuts": [
+    {
+      "label": "Patient Registry",
+      "type": "DocType",
+      "link_to": "Patient",
+      "doc_view": "List",
+      "color": "Green"
+    },
+    {
+      "label": "Book Appointments",
+      "type": "DocType",
+      "link_to": "Patient Appointment",
+      "doc_view": "List",
+      "color": "Blue"
+    },
+    {
+      "label": "Appointment Calendar",
+      "type": "DocType",
+      "link_to": "Patient Appointment",
+      "doc_view": "Calendar",
+      "color": "Blue"
+    },
+    {
+      "label": "Reception & Queue",
+      "type": "Report",
+      "link_to": "Radiology Reception",
+      "color": "Orange"
+    },
+    {
+      "label": "Diagnostic Reports",
+      "type": "DocType",
+      "link_to": "Diagnostic Report",
+      "doc_view": "List",
+      "color": "Green"
+    },
+    {
+      "label": "Patient Portal (patient only)",
+      "type": "URL",
+      "url": "/patient-portal",
+      "color": "Grey"
+    }
+  ],
+  "links": [
+    {
+      "type": "Card Break",
+      "label": "Reception & Scheduling",
+      "link_count": 6
+    },
+    {
+      "type": "Link",
+      "label": "Patients",
+      "link_type": "DocType",
+      "link_to": "Patient"
+    },
+    {
+      "type": "Link",
+      "label": "Patient Appointments",
+      "link_type": "DocType",
+      "link_to": "Patient Appointment"
+    },
+    {
+      "type": "Link",
+      "label": "Appointment Types",
+      "link_type": "DocType",
+      "link_to": "Appointment Type"
+    },
+    {
+      "type": "Link",
+      "label": "Healthcare Service Units",
+      "link_type": "DocType",
+      "link_to": "Healthcare Service Unit"
+    },
+    {
+      "type": "Link",
+      "label": "Service Unit Types",
+      "link_type": "DocType",
+      "link_to": "Healthcare Service Unit Type"
+    },
+    {
+      "type": "Link",
+      "label": "Customers",
+      "link_type": "DocType",
+      "link_to": "Customer"
+    },
+    {
+      "type": "Card Break",
+      "label": "Clinical Reporting",
+      "link_count": 4
+    },
+    {
+      "type": "Link",
+      "label": "Observations",
+      "link_type": "DocType",
+      "link_to": "Observation"
+    },
+    {
+      "type": "Link",
+      "label": "Diagnostic Reports",
+      "link_type": "DocType",
+      "link_to": "Diagnostic Report"
+    },
+    {
+      "type": "Link",
+      "label": "Service Requests",
+      "link_type": "DocType",
+      "link_to": "Service Request"
+    },
+    {
+      "type": "Link",
+      "label": "Lab Tests",
+      "link_type": "DocType",
+      "link_to": "Lab Test"
+    }
+  ],
+  "content": "[{\"id\": \"radiology_title\", \"type\": \"header\", \"data\": {\"text\": \"<b>Radiology Center | Reception & Scheduling</b>\", \"col\": 12}}, {\"id\": \"radiology_1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Patient Registry\", \"col\": 4}}, {\"id\": \"radiology_2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Book Appointments\", \"col\": 4}}, {\"id\": \"radiology_3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Appointment Calendar\", \"col\": 4}}, {\"id\": \"radiology_4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Reception & Queue\", \"col\": 4}}, {\"id\": \"radiology_5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Diagnostic Reports\", \"col\": 4}}, {\"id\": \"radiology_6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Patient Portal (patient only)\", \"col\": 4}}, {\"id\": \"radiology_subtitle\", \"type\": \"header\", \"data\": {\"text\": \"<b>Operations & Clinical Records</b>\", \"col\": 12}}, {\"id\": \"radiology_8\", \"type\": \"card\", \"data\": {\"card_name\": \"Reception & Scheduling\", \"col\": 6}}, {\"id\": \"radiology_9\", \"type\": \"card\", \"data\": {\"card_name\": \"Clinical Reporting\", \"col\": 6}}, {\"id\": \"radiology_notes\", \"type\": \"paragraph\", \"data\": {\"text\": \"Book using Patient Appointment and open Calendar to schedule. Reception & Queue supports Check In and Check Out. Patient.customer links each patient to ERPNext billing. Only approved results should be exposed in the Patient Portal.\", \"col\": 12}}]"
+}

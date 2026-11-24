@@ -1,0 +1,15 @@
+{
+  "doctype": "Report",
+  "name": "Dental Lab Operations",
+  "report_name": "Dental Lab Operations",
+  "module": "Dental Lab",
+  "ref_doctype": "Dental Lab Case",
+  "report_type": "Script Report",
+  "is_standard": "Yes",
+  "disabled": 0,
+  "roles": [
+    {
+      "role": "Healthcare Administrator"
+    }
+  ]
+}

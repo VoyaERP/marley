@@ -62,6 +62,9 @@ def execute(filters=None):
         ("received_on", "Received", "Date", 105, None),
         ("due_date", "Due", "Date", 105, None),
         ("overdue_days", "Overdue Days", "Int", 100, None),
+        ("service_request", "Service Request", "Link", 150, "Service Request"),
+        ("lab_test", "Lab Test", "Link", 140, "Lab Test"),
+        ("diagnostic_report", "Diagnostic Report", "Link", 160, "Diagnostic Report"),
         ("external_reference", "External Reference", "Data", 165, None),
     ]
 

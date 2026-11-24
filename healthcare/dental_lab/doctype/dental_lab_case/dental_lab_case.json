@@ -33,6 +33,11 @@
   "practitioner",
   "patient_appointment",
   "patient_encounter",
+  "clinical_links_section",
+  "service_request",
+  "lab_test",
+  "clinical_links_column",
+  "diagnostic_report",
   "schedule_section",
   "received_on",
   "schedule_column",
@@ -186,6 +191,37 @@
    "options": "Patient Encounter",
    "depends_on": "eval:doc.case_origin==='Internal Clinic' && !!doc.patient",
    "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
+  },
+  {
+   "fieldname": "clinical_links_section",
+   "label": "Clinical Diagnostics (Internal Clinic)",
+   "fieldtype": "Section Break",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic'"
+  },
+  {
+   "fieldname": "service_request",
+   "label": "Service Request",
+   "fieldtype": "Link",
+   "options": "Service Request",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic' && !!doc.patient"
+  },
+  {
+   "fieldname": "lab_test",
+   "label": "Lab Test",
+   "fieldtype": "Link",
+   "options": "Lab Test",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic' && !!doc.patient"
+  },
+  {
+   "fieldname": "clinical_links_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "diagnostic_report",
+   "label": "Diagnostic Report",
+   "fieldtype": "Link",
+   "options": "Diagnostic Report",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic' && !!doc.patient"
   },
   {
    "fieldname": "schedule_section",

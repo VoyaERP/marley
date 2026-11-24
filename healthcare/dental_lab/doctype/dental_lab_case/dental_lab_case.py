@@ -114,6 +114,8 @@ class DentalLabCase(Document):
                     _("Sales Order customer/company mismatch or order cancelled")
                 )
 
+        self.validate_clinical_links()
+
         previous = self.get_doc_before_save()
 
         validate_status_transition(
@@ -138,3 +140,42 @@ class DentalLabCase(Document):
                             field
                         )
                     )
+
+    def validate_clinical_links(self):
+        """Validate existing clinical references without creating records."""
+        links = (
+            ("service_request", "Service Request"),
+            ("lab_test", "Lab Test"),
+            ("diagnostic_report", "Diagnostic Report"),
+        )
+
+        if self.case_origin != "Internal Clinic":
+            if any(self.get(field) for field, _ in links):
+                frappe.throw(
+                    _("Clinical links are restricted to internal-clinic cases")
+                )
+            return
+
+        for field, doctype in links:
+            name = self.get(field)
+            if not name:
+                continue
+
+            clinical = frappe.db.get_value(
+                doctype,
+                name,
+                ["patient", "company", "docstatus"],
+                as_dict=True,
+            )
+
+            if (
+                not clinical
+                or not self.patient
+                or clinical.patient != self.patient
+                or clinical.company != self.company
+                or clinical.docstatus == 2
+            ):
+                frappe.throw(
+                    _("{0} must belong to the same patient and company "
+                      "and must not be cancelled").format(doctype)
+                )

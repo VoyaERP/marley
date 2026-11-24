@@ -33,6 +33,19 @@ frappe.ui.form.on("Dental Lab Case", {
             }
         }));
 
+        // Link existing clinical documents; do not create them.
+        for (const field of [
+            "service_request", "lab_test", "diagnostic_report"
+        ]) {
+            frm.set_query(field, () => ({
+                filters: {
+                    patient: frm.doc.patient || "",
+                    company: frm.doc.company || "",
+                    docstatus: ["!=", 2]
+                }
+            }));
+        }
+
         // Reuse ERPNext warehouse and commercial master data.
         frm.set_query("warehouse", () => ({
             filters: {
@@ -60,6 +73,9 @@ frappe.ui.form.on("Dental Lab Case", {
                 "patient",
                 "patient_appointment",
                 "patient_encounter",
+                "service_request",
+                "lab_test",
+                "diagnostic_report",
                 "origin_branch"
             ]);
         }
@@ -76,7 +92,10 @@ frappe.ui.form.on("Dental Lab Case", {
     patient(frm) {
         return clear_dental_case_fields(frm, [
             "patient_appointment",
-            "patient_encounter"
+            "patient_encounter",
+            "service_request",
+            "lab_test",
+            "diagnostic_report"
         ]);
     },
 
@@ -89,7 +108,10 @@ frappe.ui.form.on("Dental Lab Case", {
             "warehouse",
             "sales_order",
             "patient_appointment",
-            "patient_encounter"
+            "patient_encounter",
+            "service_request",
+            "lab_test",
+            "diagnostic_report"
         ]);
     }
 });

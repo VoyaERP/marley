@@ -21,61 +21,143 @@
       "role": "System Manager"
     }
   ],
-  "charts": [],
-  "number_cards": [],
-  "quick_lists": [],
+  "charts": [
+    {
+      "chart_name": "Radiology Appointment Status",
+      "label": "Appointment Status (All Time, All Units)"
+    },
+    {
+      "chart_name": "Radiology Service Unit Workload",
+      "label": "Service Unit Workload (All Time, All Units)"
+    }
+  ],
+  "number_cards": [
+    {
+      "number_card_name": "Radiology Appointments Today",
+      "label": "Appointments Today (All Units)"
+    },
+    {
+      "number_card_name": "Radiology Awaiting Arrival",
+      "label": "Awaiting Arrival (All Units)"
+    },
+    {
+      "number_card_name": "Radiology Checked In",
+      "label": "Checked In Today (All Units)"
+    },
+    {
+      "number_card_name": "Radiology Checked Out",
+      "label": "Checked Out Today (All Units)"
+    },
+    {
+      "number_card_name": "Radiology No Shows",
+      "label": "No Shows Today (All Units)"
+    },
+    {
+      "number_card_name": "Radiology Approved Reports",
+      "label": "Approved Reports (All Units)"
+    }
+  ],
+  "quick_lists": [
+    {
+      "document_type": "Patient Appointment",
+      "label": "Arrivals Today",
+      "quick_list_filter": "[['Patient Appointment','appointment_date','=',frappe.datetime.get_today()],['Patient Appointment','status','in',['Open','Scheduled','Confirmed']]]"
+    },
+    {
+      "document_type": "Patient Appointment",
+      "label": "Checked In Today",
+      "quick_list_filter": "[['Patient Appointment','appointment_date','=',frappe.datetime.get_today()],['Patient Appointment','status','=','Checked In']]"
+    },
+    {
+      "document_type": "Patient Appointment",
+      "label": "No Shows Today",
+      "quick_list_filter": "[['Patient Appointment','appointment_date','=',frappe.datetime.get_today()],['Patient Appointment','status','=','No Show']]"
+    },
+    {
+      "document_type": "Diagnostic Report",
+      "label": "Pending Diagnostic Reviews",
+      "quick_list_filter": "[['Diagnostic Report','status','=','Pending Review']]"
+    }
+  ],
   "custom_blocks": [],
   "shortcuts": [
     {
       "label": "Patient Registry",
       "type": "DocType",
+      "color": "Blue",
       "link_to": "Patient",
-      "doc_view": "List",
-      "color": "Green"
+      "doc_view": "List"
     },
     {
       "label": "Book Appointments",
       "type": "DocType",
+      "color": "Blue",
       "link_to": "Patient Appointment",
-      "doc_view": "List",
-      "color": "Blue"
+      "doc_view": "List"
     },
     {
       "label": "Appointment Calendar",
       "type": "DocType",
+      "color": "Blue",
       "link_to": "Patient Appointment",
-      "doc_view": "Calendar",
-      "color": "Blue"
+      "doc_view": "Calendar"
     },
     {
       "label": "Reception & Queue",
       "type": "Report",
-      "link_to": "Radiology Reception",
-      "color": "Orange"
+      "color": "Blue",
+      "link_to": "Radiology Reception"
+    },
+    {
+      "label": "Imaging Rooms",
+      "type": "DocType",
+      "color": "Blue",
+      "link_to": "Healthcare Service Unit",
+      "doc_view": "List"
+    },
+    {
+      "label": "Exam Types",
+      "type": "DocType",
+      "color": "Blue",
+      "link_to": "Appointment Type",
+      "doc_view": "List"
     },
     {
       "label": "Diagnostic Reports",
       "type": "DocType",
+      "color": "Blue",
       "link_to": "Diagnostic Report",
-      "doc_view": "List",
-      "color": "Green"
+      "doc_view": "List"
     },
     {
-      "label": "Patient Portal (patient only)",
+      "label": "Lab Test Report",
+      "type": "Report",
+      "color": "Blue",
+      "link_to": "Lab Test Report"
+    },
+    {
+      "label": "ERP Customers",
+      "type": "DocType",
+      "color": "Blue",
+      "link_to": "Customer",
+      "doc_view": "List"
+    },
+    {
+      "label": "Patient Portal (Build Pending)",
       "type": "URL",
-      "url": "/patient-portal",
-      "color": "Grey"
+      "color": "Blue",
+      "url": "/patient-portal"
     }
   ],
   "links": [
     {
       "type": "Card Break",
-      "label": "Reception & Scheduling",
-      "link_count": 6
+      "label": "Patients & Booking",
+      "link_count": 5
     },
     {
       "type": "Link",
-      "label": "Patients",
+      "label": "Patient Registry",
       "link_type": "DocType",
       "link_to": "Patient"
     },
@@ -93,7 +175,24 @@
     },
     {
       "type": "Link",
-      "label": "Healthcare Service Units",
+      "label": "ERP Customers",
+      "link_type": "DocType",
+      "link_to": "Customer"
+    },
+    {
+      "type": "Link",
+      "label": "Practitioners",
+      "link_type": "DocType",
+      "link_to": "Healthcare Practitioner"
+    },
+    {
+      "type": "Card Break",
+      "label": "Rooms & Scheduling",
+      "link_count": 5
+    },
+    {
+      "type": "Link",
+      "label": "Imaging Rooms",
       "link_type": "DocType",
       "link_to": "Healthcare Service Unit"
     },
@@ -105,14 +204,32 @@
     },
     {
       "type": "Link",
-      "label": "Customers",
+      "label": "Practitioner Schedules",
       "link_type": "DocType",
-      "link_to": "Customer"
+      "link_to": "Practitioner Schedule"
+    },
+    {
+      "type": "Link",
+      "label": "Practitioner Availability",
+      "link_type": "DocType",
+      "link_to": "Practitioner Availability"
+    },
+    {
+      "type": "Link",
+      "label": "Departments",
+      "link_type": "DocType",
+      "link_to": "Medical Department"
     },
     {
       "type": "Card Break",
-      "label": "Clinical Reporting",
-      "link_count": 4
+      "label": "Clinical Tests & Reports",
+      "link_count": 6
+    },
+    {
+      "type": "Link",
+      "label": "Service Requests",
+      "link_type": "DocType",
+      "link_to": "Service Request"
     },
     {
       "type": "Link",
@@ -128,16 +245,67 @@
     },
     {
       "type": "Link",
-      "label": "Service Requests",
-      "link_type": "DocType",
-      "link_to": "Service Request"
-    },
-    {
-      "type": "Link",
       "label": "Lab Tests",
       "link_type": "DocType",
       "link_to": "Lab Test"
+    },
+    {
+      "type": "Link",
+      "label": "Lab Test Report",
+      "link_type": "Report",
+      "link_to": "Lab Test Report",
+      "is_query_report": 1
+    },
+    {
+      "type": "Link",
+      "label": "Sample Collections",
+      "link_type": "DocType",
+      "link_to": "Sample Collection"
+    },
+    {
+      "type": "Card Break",
+      "label": "Reception, Finance & Related",
+      "link_count": 6
+    },
+    {
+      "type": "Link",
+      "label": "Reception Queue",
+      "link_type": "Report",
+      "link_to": "Radiology Reception",
+      "is_query_report": 1
+    },
+    {
+      "type": "Link",
+      "label": "Sales Invoices",
+      "link_type": "DocType",
+      "link_to": "Sales Invoice"
+    },
+    {
+      "type": "Link",
+      "label": "Payment Entries",
+      "link_type": "DocType",
+      "link_to": "Payment Entry"
+    },
+    {
+      "type": "Link",
+      "label": "Healthcare Settings",
+      "link_type": "DocType",
+      "link_to": "Healthcare Settings"
+    },
+    {
+      "type": "Link",
+      "label": "Dental Lab Cases",
+      "link_type": "DocType",
+      "link_to": "Dental Lab Case"
+    },
+    {
+      "type": "Link",
+      "label": "Dental Lab Operations",
+      "link_type": "Report",
+      "link_to": "Dental Lab Operations",
+      "is_query_report": 1
     }
   ],
-  "content": "[{\"id\": \"radiology_title\", \"type\": \"header\", \"data\": {\"text\": \"<b>Radiology Center | Reception & Scheduling</b>\", \"col\": 12}}, {\"id\": \"radiology_1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Patient Registry\", \"col\": 4}}, {\"id\": \"radiology_2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Book Appointments\", \"col\": 4}}, {\"id\": \"radiology_3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Appointment Calendar\", \"col\": 4}}, {\"id\": \"radiology_4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Reception & Queue\", \"col\": 4}}, {\"id\": \"radiology_5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Diagnostic Reports\", \"col\": 4}}, {\"id\": \"radiology_6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Patient Portal (patient only)\", \"col\": 4}}, {\"id\": \"radiology_subtitle\", \"type\": \"header\", \"data\": {\"text\": \"<b>Operations & Clinical Records</b>\", \"col\": 12}}, {\"id\": \"radiology_8\", \"type\": \"card\", \"data\": {\"card_name\": \"Reception & Scheduling\", \"col\": 6}}, {\"id\": \"radiology_9\", \"type\": \"card\", \"data\": {\"card_name\": \"Clinical Reporting\", \"col\": 6}}, {\"id\": \"radiology_notes\", \"type\": \"paragraph\", \"data\": {\"text\": \"Book using Patient Appointment and open Calendar to schedule. Reception & Queue supports Check In and Check Out. Patient.customer links each patient to ERPNext billing. Only approved results should be exposed in the Patient Portal.\", \"col\": 12}}]"
+  "content": "[{\"id\": \"radiology_workflow_v2_1\", \"type\": \"header\", \"data\": {\"text\": \"<b>Radiology Center | Front Desk</b>\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Patient Registry\", \"col\": 3}}, {\"id\": \"radiology_workflow_v2_3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Book Appointments\", \"col\": 3}}, {\"id\": \"radiology_workflow_v2_4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Appointment Calendar\", \"col\": 3}}, {\"id\": \"radiology_workflow_v2_5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Reception & Queue\", \"col\": 3}}, {\"id\": \"radiology_workflow_v2_6\", \"type\": \"header\", \"data\": {\"text\": \"<b>Daily Operations | All Healthcare Units</b>\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_7\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Radiology Appointments Today\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_8\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Radiology Awaiting Arrival\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_9\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Radiology Checked In\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_10\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Radiology Checked Out\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_11\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Radiology No Shows\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_12\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Radiology Approved Reports\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_13\", \"type\": \"header\", \"data\": {\"text\": \"<b>Appointment Analytics | All Units</b>\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_14\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Radiology Appointment Status\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_15\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Radiology Service Unit Workload\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_16\", \"type\": \"header\", \"data\": {\"text\": \"<b>Arrival & Clinical Review Queues</b>\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_17\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"Arrivals Today\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_18\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"Checked In Today\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_19\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"No Shows Today\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_20\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"Pending Diagnostic Reviews\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_21\", \"type\": \"header\", \"data\": {\"text\": \"<b>Imaging, Clinical Results & Billing</b>\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_22\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Imaging Rooms\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_23\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Exam Types\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_24\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Diagnostic Reports\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_25\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Lab Test Report\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_26\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"ERP Customers\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_27\", \"type\": \"card\", \"data\": {\"card_name\": \"Patients & Booking\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_28\", \"type\": \"card\", \"data\": {\"card_name\": \"Rooms & Scheduling\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_29\", \"type\": \"card\", \"data\": {\"card_name\": \"Clinical Tests & Reports\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_30\", \"type\": \"card\", \"data\": {\"card_name\": \"Reception, Finance & Related\", \"col\": 6}}, {\"id\": \"radiology_workflow_v2_31\", \"type\": \"header\", \"data\": {\"text\": \"<b>Patient Access & Configuration</b>\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_32\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Patient Portal (Build Pending)\", \"col\": 4}}, {\"id\": \"radiology_workflow_v2_33\", \"type\": \"paragraph\", \"data\": {\"text\": \"Booking uses the existing Patient Appointment calendar. Reception & Queue supports Check In and Check Out. Queue position is a live waiting position, not a permanent ticket number. Patient.customer links to ERPNext billing. The Patient Portal frontend still requires repair; do not enable Diagnostics until its assets and access controls are verified.\", \"col\": 12}}, {\"id\": \"radiology_workflow_v2_34\", \"type\": \"paragraph\", \"data\": {\"text\": \"KPI cards and charts include ALL Healthcare units and companies until Radiology-specific service units are configured. Filter Radiology Reception by Company and Imaging Room for operational reporting.\", \"col\": 12}}]",
+  "sequence_id": 16
 }

@@ -1,0 +1,17 @@
+{
+  "doctype": "Dashboard Chart",
+  "name": "Radiology Service Unit Workload",
+  "chart_name": "Radiology Service Unit Workload",
+  "module": "Healthcare",
+  "document_type": "Patient Appointment",
+  "chart_type": "Group By",
+  "type": "Bar",
+  "filters_json": "[]",
+  "is_standard": 1,
+  "is_public": 1,
+  "timeseries": 0,
+  "show_values_over_chart": 1,
+  "group_by_based_on": "service_unit",
+  "group_by_type": "Count",
+  "empty_state_message": "Appointments will appear after booking."
+}

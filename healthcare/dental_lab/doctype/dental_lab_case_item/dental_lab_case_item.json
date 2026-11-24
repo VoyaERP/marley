@@ -13,6 +13,7 @@
   "item_code",
   "tooth_number",
   "shade",
+  "item_details_column",
   "qty",
   "uom",
   "specification"
@@ -30,13 +31,19 @@
    "fieldname": "tooth_number",
    "fieldtype": "Data",
    "label": "Tooth / Position",
-   "in_list_view": 1
+   "in_list_view": 1,
+   "depends_on": "eval:!!doc.item_code"
   },
   {
    "fieldname": "shade",
    "fieldtype": "Data",
    "label": "Shade",
-   "in_list_view": 1
+   "in_list_view": 1,
+   "depends_on": "eval:!!doc.item_code"
+  },
+  {
+   "fieldname": "item_details_column",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "qty",
@@ -44,7 +51,8 @@
    "label": "Quantity",
    "default": "1",
    "reqd": 1,
-   "in_list_view": 1
+   "in_list_view": 1,
+   "depends_on": "eval:!!doc.item_code"
   },
   {
    "fieldname": "uom",
@@ -52,12 +60,14 @@
    "label": "UOM",
    "options": "UOM",
    "fetch_from": "item_code.stock_uom",
-   "read_only": 1
+   "read_only": 1,
+   "depends_on": "eval:!!doc.item_code"
   },
   {
    "fieldname": "specification",
    "fieldtype": "Small Text",
-   "label": "Technical Specification"
+   "label": "Technical Specification",
+   "depends_on": "eval:!!doc.item_code"
   }
  ],
  "permissions": []

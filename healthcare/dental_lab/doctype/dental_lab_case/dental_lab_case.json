@@ -14,23 +14,28 @@
  "links": [],
  "states": [],
  "field_order": [
+  "overview_section",
   "case_origin",
-  "status",
   "priority",
+  "overview_column",
+  "status",
   "organisation_section",
   "company",
   "production_branch",
+  "organisation_column",
   "origin_branch",
   "warehouse",
   "partner_section",
   "customer",
-  "external_reference",
   "patient",
+  "partner_column",
+  "external_reference",
   "practitioner",
   "patient_appointment",
   "patient_encounter",
   "schedule_section",
   "received_on",
+  "schedule_column",
   "due_date",
   "items_section",
   "items",
@@ -41,13 +46,32 @@
  ],
  "fields": [
   {
+   "fieldname": "overview_section",
+   "fieldtype": "Section Break",
+   "label": "Case Overview"
+  },
+  {
    "fieldname": "case_origin",
    "fieldtype": "Select",
    "label": "Case Origin",
    "options": "\nInternal Clinic\nExternal Clinic",
    "reqd": 1,
    "in_list_view": 1,
-   "in_standard_filter": 1
+   "in_standard_filter": 1,
+   "read_only_depends_on": "eval:!doc.__islocal && doc.status!=='Received'"
+  },
+  {
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "Normal\nUrgent",
+   "default": "Normal",
+   "in_list_view": 1,
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
+  },
+  {
+   "fieldname": "overview_column",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "status",
@@ -57,15 +81,8 @@
    "default": "Received",
    "reqd": 1,
    "in_list_view": 1,
-   "in_standard_filter": 1
-  },
-  {
-   "fieldname": "priority",
-   "fieldtype": "Select",
-   "label": "Priority",
-   "options": "Normal\nUrgent",
-   "default": "Normal",
-   "in_list_view": 1
+   "in_standard_filter": 1,
+   "read_only_depends_on": "eval:!!doc.__islocal || doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "organisation_section",
@@ -78,7 +95,8 @@
    "label": "Company",
    "options": "Company",
    "reqd": 1,
-   "in_standard_filter": 1
+   "in_standard_filter": 1,
+   "read_only_depends_on": "eval:!doc.__islocal && doc.status!=='Received'"
   },
   {
    "fieldname": "production_branch",
@@ -86,19 +104,29 @@
    "label": "Production Branch",
    "options": "Branch",
    "reqd": 1,
-   "in_standard_filter": 1
+   "in_standard_filter": 1,
+   "depends_on": "eval:!!doc.company",
+   "read_only_depends_on": "eval:!doc.__islocal && doc.status!=='Received'"
+  },
+  {
+   "fieldname": "organisation_column",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "origin_branch",
    "fieldtype": "Link",
    "label": "Originating Clinic Branch",
-   "options": "Branch"
+   "options": "Branch",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic'",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "warehouse",
    "fieldtype": "Link",
    "label": "Lab Warehouse",
-   "options": "Warehouse"
+   "options": "Warehouse",
+   "depends_on": "eval:!!doc.company",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "partner_section",
@@ -111,37 +139,53 @@
    "label": "Customer (External Clinic)",
    "options": "Customer",
    "mandatory_depends_on": "eval:doc.case_origin==='External Clinic'",
-   "in_standard_filter": 1
-  },
-  {
-   "fieldname": "external_reference",
-   "fieldtype": "Data",
-   "label": "External Clinic Case ID"
+   "in_standard_filter": 1,
+   "depends_on": "eval:doc.case_origin==='External Clinic'",
+   "read_only_depends_on": "eval:!doc.__islocal && doc.status!=='Received'"
   },
   {
    "fieldname": "patient",
    "fieldtype": "Link",
    "label": "Patient (Internal Clinic)",
    "options": "Patient",
-   "mandatory_depends_on": "eval:doc.case_origin==='Internal Clinic'"
+   "mandatory_depends_on": "eval:doc.case_origin==='Internal Clinic'",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic'",
+   "read_only_depends_on": "eval:!doc.__islocal && doc.status!=='Received'"
+  },
+  {
+   "fieldname": "partner_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "external_reference",
+   "fieldtype": "Data",
+   "label": "External Clinic Case ID",
+   "depends_on": "eval:doc.case_origin==='External Clinic'",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "practitioner",
    "fieldtype": "Link",
    "label": "Referring Practitioner",
-   "options": "Healthcare Practitioner"
+   "options": "Healthcare Practitioner",
+   "depends_on": "eval:!!doc.case_origin",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "patient_appointment",
    "fieldtype": "Link",
    "label": "Patient Appointment",
-   "options": "Patient Appointment"
+   "options": "Patient Appointment",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic' && !!doc.patient",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "patient_encounter",
    "fieldtype": "Link",
    "label": "Patient Encounter",
-   "options": "Patient Encounter"
+   "options": "Patient Encounter",
+   "depends_on": "eval:doc.case_origin==='Internal Clinic' && !!doc.patient",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "schedule_section",
@@ -154,13 +198,19 @@
    "label": "Received On",
    "default": "Today",
    "reqd": 1,
-   "in_list_view": 1
+   "in_list_view": 1,
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
+  },
+  {
+   "fieldname": "schedule_column",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "due_date",
    "fieldtype": "Date",
    "label": "Promised Delivery Date",
-   "in_list_view": 1
+   "in_list_view": 1,
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "items_section",
@@ -172,18 +222,22 @@
    "fieldtype": "Table",
    "label": "Case Items",
    "options": "Dental Lab Case Item",
-   "reqd": 1
+   "reqd": 1,
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "commercial_section",
    "fieldtype": "Section Break",
-   "label": "Commercial Reference"
+   "label": "Commercial Reference",
+   "depends_on": "eval:doc.case_origin==='External Clinic' && !!doc.customer"
   },
   {
    "fieldname": "sales_order",
    "fieldtype": "Link",
    "label": "Sales Order",
-   "options": "Sales Order"
+   "options": "Sales Order",
+   "depends_on": "eval:doc.case_origin==='External Clinic' && !!doc.customer",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   },
   {
    "fieldname": "notes_section",
@@ -193,7 +247,8 @@
   {
    "fieldname": "notes",
    "fieldtype": "Small Text",
-   "label": "Case Instructions"
+   "label": "Case Instructions",
+   "read_only_depends_on": "eval:doc.status==='Delivered' || doc.status==='Cancelled'"
   }
  ],
  "search_fields": "case_origin,customer,patient,external_reference,production_branch,status",

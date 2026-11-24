@@ -1,0 +1,38 @@
+{
+ "doctype": "Workspace",
+ "name": "Dental Laboratory",
+ "label": "Dental Laboratory",
+ "title": "Dental Laboratory",
+ "type": "Workspace",
+ "module": "Dental Lab",
+ "app": "healthcare",
+ "docstatus": 0,
+ "public": 1,
+ "for_user": "",
+ "parent_page": "",
+ "is_hidden": 0,
+ "hide_custom": 1,
+ "icon": "layers",
+ "indicator_color": "blue",
+ "sequence_id": 25,
+ "charts": [],
+ "links": [],
+ "quick_lists": [],
+ "number_cards": [],
+ "custom_blocks": [],
+ "roles": [
+  {
+   "role": "Healthcare Administrator"
+  }
+ ],
+ "shortcuts": [
+  {
+   "type": "DocType",
+   "link_to": "Dental Lab Case",
+   "label": "Dental Lab Case",
+   "doc_view": "List",
+   "color": "Blue"
+  }
+ ],
+ "content": "[{\"id\": \"dental-lab-header\", \"type\": \"header\", \"data\": {\"text\": \"<b>Dental Laboratory</b>\", \"col\": 12}}, {\"id\": \"dental-lab-cases\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Dental Lab Case\", \"col\": 4}}]"
+}

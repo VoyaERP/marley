@@ -1,0 +1,18 @@
+{
+ "doctype": "Dashboard Chart",
+ "name": "Dental Lab Monthly Intake",
+ "chart_name": "Dental Lab Monthly Intake",
+ "module": "Dental Lab",
+ "document_type": "Dental Lab Case",
+ "chart_type": "Count",
+ "type": "Bar",
+ "filters_json": "[]",
+ "is_standard": 1,
+ "is_public": 1,
+ "timeseries": 1,
+ "show_values_over_chart": 1,
+ "empty_state_message": "Create a Dental Lab Case to populate this chart.",
+ "based_on": "received_on",
+ "timespan": "Last Year",
+ "time_interval": "Monthly"
+}

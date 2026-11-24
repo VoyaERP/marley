@@ -15,10 +15,152 @@
  "icon": "layers",
  "indicator_color": "blue",
  "sequence_id": 25,
- "charts": [],
- "links": [],
- "quick_lists": [],
- "number_cards": [],
+ "charts": [
+  {
+   "chart_name": "Dental Lab Status Distribution",
+   "label": "Dental Lab Status Distribution"
+  },
+  {
+   "chart_name": "Dental Lab Branch Workload",
+   "label": "Dental Lab Branch Workload"
+  },
+  {
+   "chart_name": "Dental Lab Clinic Mix",
+   "label": "Dental Lab Clinic Mix"
+  },
+  {
+   "chart_name": "Dental Lab Monthly Intake",
+   "label": "Dental Lab Monthly Intake"
+  }
+ ],
+ "links": [
+  {
+   "type": "Card Break",
+   "label": "Clinical References",
+   "link_count": 3
+  },
+  {
+   "type": "Link",
+   "label": "Patients",
+   "link_type": "DocType",
+   "link_to": "Patient"
+  },
+  {
+   "type": "Link",
+   "label": "Practitioners",
+   "link_type": "DocType",
+   "link_to": "Healthcare Practitioner"
+  },
+  {
+   "type": "Link",
+   "label": "Appointments",
+   "link_type": "DocType",
+   "link_to": "Patient Appointment"
+  },
+  {
+   "type": "Card Break",
+   "label": "Commercial and Inventory",
+   "link_count": 7
+  },
+  {
+   "type": "Link",
+   "label": "Customers",
+   "link_type": "DocType",
+   "link_to": "Customer"
+  },
+  {
+   "type": "Link",
+   "label": "Sales Orders",
+   "link_type": "DocType",
+   "link_to": "Sales Order"
+  },
+  {
+   "type": "Link",
+   "label": "Sales Invoices",
+   "link_type": "DocType",
+   "link_to": "Sales Invoice"
+  },
+  {
+   "type": "Link",
+   "label": "Delivery Notes",
+   "link_type": "DocType",
+   "link_to": "Delivery Note"
+  },
+  {
+   "type": "Link",
+   "label": "Items",
+   "link_type": "DocType",
+   "link_to": "Item"
+  },
+  {
+   "type": "Link",
+   "label": "Warehouses",
+   "link_type": "DocType",
+   "link_to": "Warehouse"
+  },
+  {
+   "type": "Link",
+   "label": "Stock Movements",
+   "link_type": "DocType",
+   "link_to": "Stock Entry"
+  }
+ ],
+ "quick_lists": [
+  {
+   "document_type": "Dental Lab Case",
+   "label": "New Intake",
+   "quick_list_filter": "[[\"Dental Lab Case\", \"status\", \"=\", \"Received\"]]"
+  },
+  {
+   "document_type": "Dental Lab Case",
+   "label": "QC Queue",
+   "quick_list_filter": "[[\"Dental Lab Case\", \"status\", \"=\", \"Quality Check\"]]"
+  },
+  {
+   "document_type": "Dental Lab Case",
+   "label": "Ready to Deliver",
+   "quick_list_filter": "[[\"Dental Lab Case\", \"status\", \"=\", \"Ready for Delivery\"]]"
+  },
+  {
+   "document_type": "Dental Lab Case",
+   "label": "Overdue Queue",
+   "quick_list_filter": "[['Dental Lab Case','status','not in',['Delivered','Cancelled']],['Dental Lab Case','due_date','<',frappe.datetime.get_today()]]"
+  }
+ ],
+ "number_cards": [
+  {
+   "number_card_name": "Dental Lab Total Cases",
+   "label": "Dental Lab Total Cases"
+  },
+  {
+   "number_card_name": "Dental Lab Received",
+   "label": "Dental Lab Received"
+  },
+  {
+   "number_card_name": "Dental Lab In Production",
+   "label": "Dental Lab In Production"
+  },
+  {
+   "number_card_name": "Dental Lab QC Pending",
+   "label": "Dental Lab QC Pending"
+  },
+  {
+   "number_card_name": "Dental Lab Ready to Deliver",
+   "label": "Dental Lab Ready to Deliver"
+  },
+  {
+   "number_card_name": "Dental Lab Overdue",
+   "label": "Dental Lab Overdue"
+  },
+  {
+   "number_card_name": "Dental Lab Urgent Open",
+   "label": "Dental Lab Urgent Open"
+  },
+  {
+   "number_card_name": "Dental Lab Delivered",
+   "label": "Dental Lab Delivered"
+  }
+ ],
  "custom_blocks": [],
  "roles": [
   {
@@ -34,5 +176,5 @@
    "color": "Blue"
   }
  ],
- "content": "[{\"id\": \"dental-lab-header\", \"type\": \"header\", \"data\": {\"text\": \"<b>Dental Laboratory</b>\", \"col\": 12}}, {\"id\": \"dental-lab-cases\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Dental Lab Case\", \"col\": 4}}]"
+ "content": "[{\"id\": \"dental_lab_overview\", \"type\": \"header\", \"data\": {\"text\": \"<b>Dental Laboratory | Operations Overview</b>\", \"col\": 12}}, {\"id\": \"dental_lab_dental_lab_total_cases\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab Total Cases\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_received\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab Received\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_in_production\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab In Production\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_qc_pending\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab QC Pending\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_ready_to_deliver\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab Ready to Deliver\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_overdue\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab Overdue\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_urgent_open\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab Urgent Open\", \"col\": 3}}, {\"id\": \"dental_lab_dental_lab_delivered\", \"type\": \"number_card\", \"data\": {\"number_card_name\": \"Dental Lab Delivered\", \"col\": 3}}, {\"id\": \"dental_lab_analytics\", \"type\": \"header\", \"data\": {\"text\": \"<b>Production & Performance</b>\", \"col\": 12}}, {\"id\": \"dental_lab_dental_lab_status_distribution\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Dental Lab Status Distribution\", \"col\": 6}}, {\"id\": \"dental_lab_dental_lab_branch_workload\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Dental Lab Branch Workload\", \"col\": 6}}, {\"id\": \"dental_lab_dental_lab_clinic_mix\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Dental Lab Clinic Mix\", \"col\": 6}}, {\"id\": \"dental_lab_dental_lab_monthly_intake\", \"type\": \"chart\", \"data\": {\"chart_name\": \"Dental Lab Monthly Intake\", \"col\": 6}}, {\"id\": \"dental_lab_queues\", \"type\": \"header\", \"data\": {\"text\": \"<b>Action Queues</b>\", \"col\": 12}}, {\"id\": \"dental_lab_new_intake\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"New Intake\", \"col\": 6}}, {\"id\": \"dental_lab_qc_queue\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"QC Queue\", \"col\": 6}}, {\"id\": \"dental_lab_ready_to_deliver\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"Ready to Deliver\", \"col\": 6}}, {\"id\": \"dental_lab_overdue_queue\", \"type\": \"quick_list\", \"data\": {\"quick_list_name\": \"Overdue Queue\", \"col\": 6}}, {\"id\": \"dental_lab_actions\", \"type\": \"header\", \"data\": {\"text\": \"<b>Case Management</b>\", \"col\": 12}}, {\"id\": \"dental_lab_cases\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Dental Lab Case\", \"col\": 4}}, {\"id\": \"dental_lab_clinical_references\", \"type\": \"card\", \"data\": {\"card_name\": \"Clinical References\", \"col\": 6}}, {\"id\": \"dental_lab_commercial_and_inventory\", \"type\": \"card\", \"data\": {\"card_name\": \"Commercial and Inventory\", \"col\": 6}}, {\"id\": \"dental_lab_audit\", \"type\": \"header\", \"data\": {\"text\": \"<b>Case Activity & Audit History</b>\", \"col\": 12}}, {\"id\": \"dental_lab_audit_help\", \"type\": \"paragraph\", \"data\": {\"text\": \"Open a Dental Lab Case to review its standard Timeline: status changes, field history, comments, attachments and timestamps. This uses built-in Frappe Version tracking, without a duplicate log DocType or report.\", \"col\": 12}}]"
 }

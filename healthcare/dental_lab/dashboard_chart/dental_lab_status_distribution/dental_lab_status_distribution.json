@@ -1,0 +1,17 @@
+{
+ "doctype": "Dashboard Chart",
+ "name": "Dental Lab Status Distribution",
+ "chart_name": "Dental Lab Status Distribution",
+ "module": "Dental Lab",
+ "document_type": "Dental Lab Case",
+ "chart_type": "Group By",
+ "type": "Donut",
+ "filters_json": "[]",
+ "is_standard": 1,
+ "is_public": 1,
+ "timeseries": 0,
+ "show_values_over_chart": 1,
+ "empty_state_message": "Create a Dental Lab Case to populate this chart.",
+ "group_by_based_on": "status",
+ "group_by_type": "Count"
+}
